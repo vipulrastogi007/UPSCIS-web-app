@@ -1,6 +1,11 @@
 import { LoginCredentials, RegisterData, ApiResponse } from '../types';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL ||'http://localhost:5000';
+
+export const fetchData = async (endpoint: string) => {
+  const response = await fetch(`${API_URL}${endpoint}`);
+  return response.json();
+};
 
 // Get auth token from localStorage
 const getToken = (): string | null => {
